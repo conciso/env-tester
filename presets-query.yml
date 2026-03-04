@@ -1,0 +1,10 @@
+presets:
+  - label: "baseline"
+    env:
+      COSINE_THRESHOLD: "0.5"
+      TOP_K: "50"
+      CHUNK_TOP_K: "14"
+      RELATED_CHUNK_NUMBER: "14"
+      KG_CHUNK_PICK_METHOD: "VECTOR"
+      RERANK_BY_DEFAULT: "false"
+      MIN_RERANK_SCORE: "0.2"
