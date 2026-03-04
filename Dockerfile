@@ -15,7 +15,8 @@ WORKDIR /opt/envtester
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY env_tester.py .
-COPY presets.yml .
+COPY envtester.py .
+COPY presets-query.yml .
+COPY presets-ingestion.yml .
 
-ENTRYPOINT ["python3", "/opt/envtester/env_tester.py"]
+ENTRYPOINT ["python3", "/opt/envtester/envtester.py"]

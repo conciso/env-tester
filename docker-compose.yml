@@ -1,16 +1,19 @@
 ---
 services:
-  env-tester:
+  envtester:
     build: .
-    image: env-tester:latest
-    container_name: env-tester
+    image: envtester:latest
+    container_name: envtester
+    environment:
+      RUNNER_MODE: "${RUNNER_MODE:-query}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /opt/lightrag:/opt/lightrag
       - /opt/ragchecker:/opt/ragchecker
-      - ./presets.yml:/opt/env-tester/presets.yml:ro
+      - /opt/ragingester:/opt/ragingester
     networks:
       - aibox_network
+    restart: "no"
 
 networks:
   aibox_network:
