@@ -18,4 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY env_tester.py .
 COPY presets.yml .
 
-ENTRYPOINT ["python3", "/opt/env-tester/env_tester.py"]
+ENTRYPOINT ["python3", "/opt/envtester/env_tester.py"]
