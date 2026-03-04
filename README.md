@@ -37,32 +37,3 @@ docker compose run --rm env-tester --dry_run
 # Ohne RAGChecker (nur .env wechseln + LightRAG neustarten)
 docker compose run --rm env-tester --skip_ragchecker
 ```
-
-## Git-Setup (einmalig)
-
-```bash
-cd /opt/env-tester
-
-git init
-git add .
-git commit -m "feat: initial env-tester Docker project"
-
-# Remote hinzufügen und pushen
-git remote add origin git@github.com:<org>/<repo>.git
-git branch -M main
-git push -u origin main
-```
-
-## Deployment via Ansible
-
-Die Ansible-Task `ansible/tasks/env_tester.yml` ersetzt die alte `ragchecker.yml`.
-Sie kopiert alle Dateien nach `/opt/env-tester/`, klont RAGChecker und führt den
-Container-Run aus.
-
-Ansible-Rolle einbinden:
-```yaml
-- import_tasks: tasks/env_tester.yml
-```
-
-Benötigte Variablen (aus `main.yml`/`defaults`):
-- `ragchecker_base_dir` — z.B. `/opt/ragchecker`
