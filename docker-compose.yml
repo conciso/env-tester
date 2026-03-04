@@ -1,0 +1,18 @@
+---
+services:
+  env-tester:
+    build: .
+    image: env-tester:latest
+    container_name: env-tester
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/lightrag:/opt/lightrag
+      - /opt/ragchecker:/opt/ragchecker
+      - ./presets.yml:/opt/env-tester/presets.yml:ro
+    networks:
+      - aibox_network
+
+networks:
+  aibox_network:
+    external: true
+    name: aibox_network
