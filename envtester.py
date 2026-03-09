@@ -36,7 +36,7 @@ sys.stdout.reconfigure(line_buffering=True)
 # ============================================================
 RUNNER_MODE         = os.environ.get("RUNNER_MODE", "query")   # query | ingestion
 
-OPT_DIR = Path("/opt")
+OPT_DIR = Path(os.getenv("OPT_DIR", "/opt"))
 
 LIGHTRAG_DIR        = OPT_DIR / "LightRAG"
 RAGCHECKER_DIR      = OPT_DIR / "RAGChecker"
