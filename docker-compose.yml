@@ -6,7 +6,7 @@ services:
     container_name: envtester
     environment:
       RUNNER_MODE: "${RUNNER_MODE:-query}"
-      OPT_DIR: "${OPT_DIR:-/opt}"
+      OPT_DIR: "/opt"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${OPT_DIR:-/opt}/LightRAG:/opt/LightRAG
