@@ -3,5 +3,3 @@
 __pycache__/
 *.pyc
 reports/
-presets-ingestion.yml
-presets-query.yml
