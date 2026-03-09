@@ -39,6 +39,7 @@ RUNNER_MODE         = os.environ.get("RUNNER_MODE", "query")   # query | ingesti
 BASE_ENV            = "/opt/lightrag/.env"
 BASE_ENV_BACKUP     = "/opt/lightrag/.env.bak"
 LIGHTRAG_DIR        = "/opt/lightrag"
+OVERRIDE_ENV        = f"{LIGHTRAG_DIR}/override.env"
 RAGCHECKER_DIR      = "/opt/ragchecker"
 RAGINGESTER_DIR     = "/opt/ragingester"
 
@@ -76,6 +77,14 @@ def log(msg):
 # ============================================================
 # .env-Handling
 # ============================================================
+
+def write_override_env(label: str, overrides: dict):
+    """Schreibt label + Preset-Parameter in override.env für RAGChecker-Metadaten."""
+    lines = [f"label={label}"]
+    for key, value in overrides.items():
+        lines.append(f"{key}={value}")
+    Path(OVERRIDE_ENV).write_text("\n".join(lines) + "\n")
+
 
 def write_env(preset_overrides: dict):
     """Ueberschreibt .env — Preset-Keys ersetzen, Rest bleibt. Cache immer aus."""
@@ -199,12 +208,11 @@ def run_query_presets(presets: list, run_group: str, dry_run: bool, skip_ragchec
         print()
         print(f"-- Preset {i+1}/{len(presets)}: {label} " + "-" * max(0, 50 - len(label)))
 
-        write_env(overrides)                                      
-        start_lightrag(dry_run=dry_run)                                                                                                                                                                                       
-                                                                                                                                                                                                                                
-        if not dry_run:                                                                                                                                                                                                       
-            write_override_env(label, overrides)   # <-- neu                                                                                                                                                                  
-                                                                                                                                                                                                                                
+        write_env(overrides)
+        start_lightrag(dry_run=dry_run)
+        if not dry_run:
+            write_override_env(label, overrides)
+
         if not skip_ragchecker:
             run_ragchecker(run_group, label, mode="evaluate", dry_run=dry_run)
 
@@ -259,7 +267,7 @@ def run_ingestion_presets(presets: list, run_group: str, dry_run: bool, skip_com
 
 
 # ============================================================
-# Entry point
+# Entry
 # ============================================================
 
 def main():
