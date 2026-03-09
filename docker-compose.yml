@@ -8,9 +8,9 @@ services:
       RUNNER_MODE: "${RUNNER_MODE:-query}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /opt/lightrag:/opt/lightrag
-      - /opt/ragchecker:/opt/ragchecker
-      - /opt/ragingester:/opt/ragingester
+      - /opt/LightRAG:/opt/LightRAG
+      - /opt/RAGChecker:/opt/RAGChecker
+      - /opt/RAGIngester:/opt/RAGIngester
     networks:
       - aibox_network
     restart: "no"
