@@ -44,8 +44,8 @@ RAGINGESTER_DIR     = "/opt/ragingester"
 
 LIGHTRAG_HOST       = "lightrag"
 LIGHTRAG_PORT       = 9621
-EMBEDDING_HOST      = "vllm-qwen3-vl-embedding"
-EMBEDDING_PORT      = 9010
+EMBEDDING_HOST      = "ollama"
+EMBEDDING_PORT      = 11434
 HEALTH_TIMEOUT      = 120
 EMBED_TIMEOUT       = 600
 RAGINGESTER_TIMEOUT = 7200
@@ -148,7 +148,7 @@ def start_lightrag(dry_run=False):
         while waited < EMBED_TIMEOUT:
             status = run_output(
                 f"curl -s -o /dev/null -w '%{{http_code}}' "
-                f"http://{EMBEDDING_HOST}:{EMBEDDING_PORT}/v1/models"
+                f"http://{EMBEDDING_HOST}:{EMBEDDING_PORT}/"
             )
             if status == "200":
                 break
