@@ -1,9 +1,9 @@
 ---
 services:
-  envtester:
+  env-tester:
     build: .
-    image: envtester:latest
-    container_name: envtester
+    image: env-tester:latest
+    container_name: env-tester
     environment:
       RUNNER_MODE: "${RUNNER_MODE:-query}"
       OPT_DIR: "/opt"

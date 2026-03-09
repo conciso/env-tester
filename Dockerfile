@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y docker-ce-cli docker-compose-plugin \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /opt/envtester
+WORKDIR /opt/env-tester
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -19,4 +19,4 @@ COPY envtester.py .
 COPY presets-query.yml .
 COPY presets-ingestion.yml .
 
-ENTRYPOINT ["python3", "/opt/envtester/envtester.py"]
+ENTRYPOINT ["python3", "/opt/env-tester/envtester.py"]
