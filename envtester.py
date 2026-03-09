@@ -54,10 +54,12 @@ HEALTH_TIMEOUT      = 120
 EMBED_TIMEOUT       = 600
 RAGINGESTER_TIMEOUT = 7200
 
+ENV_TESTER_DIR = OPT_DIR / "env-tester"
+
 PRESETS_FILE = (
-    "/opt/envtester/presets-ingestion.yml"
+    ENV_TESTER_DIR / "presets-ingestion.yml"
     if RUNNER_MODE == "ingestion"
-    else "/opt/envtester/presets-query.yml"
+    else ENV_TESTER_DIR / "presets-query.yml"
 )
 
 
