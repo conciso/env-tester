@@ -199,9 +199,12 @@ def run_query_presets(presets: list, run_group: str, dry_run: bool, skip_ragchec
         print()
         print(f"-- Preset {i+1}/{len(presets)}: {label} " + "-" * max(0, 50 - len(label)))
 
-        write_env(overrides)
-        start_lightrag(dry_run=dry_run)
-
+        write_env(overrides)                                      
+        start_lightrag(dry_run=dry_run)                                                                                                                                                                                       
+                                                                                                                                                                                                                                
+        if not dry_run:                                                                                                                                                                                                       
+            write_override_env(label, overrides)   # <-- neu                                                                                                                                                                  
+                                                                                                                                                                                                                                
         if not skip_ragchecker:
             run_ragchecker(run_group, label, mode="evaluate", dry_run=dry_run)
 
