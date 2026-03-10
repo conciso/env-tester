@@ -18,5 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY envtester.py .
 COPY presets-query.yml .
 COPY presets-ingestion.yml .
+COPY .env
 
 ENTRYPOINT ["python3", "/opt/env-tester/envtester.py"]
