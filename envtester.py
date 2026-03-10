@@ -36,15 +36,15 @@ sys.stdout.reconfigure(line_buffering=True)
 # ============================================================
 RUNNER_MODE         = os.environ.get("RUNNER_MODE", "query")   # query | ingestion
 
-OPT_DIR = Path(os.getenv("OPT_DIR", "/opt"))
+OPT_DIR         = Path(os.getenv("OPT_DIR", "/opt"))
 
-LIGHTRAG_DIR        = OPT_DIR / "LightRAG"
-RAGCHECKER_DIR      = OPT_DIR / "RAGChecker"
-RAGINGESTER_DIR     = OPT_DIR / "RAGIngester"
+LIGHTRAG_SUBDIR = os.getenv("LIGHTRAG_SUBDIR", "lightrag")
+RAGCHECKER_SUBDIR  = os.getenv("RAGCHECKER_SUBDIR", "ragchecker")
+RAGINGESTER_SUBDIR = os.getenv("RAGINGESTER_SUBDIR", "ragingester")
 
-BASE_ENV            = LIGHTRAG_DIR / ".env"
-BASE_ENV_BACKUP     = LIGHTRAG_DIR / ".env.bak"
-OVERRIDE_ENV        = LIGHTRAG_DIR / "override.env"
+LIGHTRAG_DIR    = OPT_DIR / LIGHTRAG_SUBDIR
+RAGCHECKER_DIR  = OPT_DIR / RAGCHECKER_SUBDIR
+RAGINGESTER_DIR = OPT_DIR / RAGINGESTER_SUBDIR
 
 LIGHTRAG_HOST       = "lightrag"
 LIGHTRAG_PORT       = 9621

@@ -7,11 +7,14 @@ services:
     environment:
       RUNNER_MODE: "${RUNNER_MODE:-query}"
       OPT_DIR: "/opt"
+      LIGHTRAG_SUBDIR: "${LIGHTRAG_SUBDIR:-lightrag}"
+      RAGCHECKER_SUBDIR: "${RAGCHECKER_SUBDIR:-ragchecker}"
+      RAGINGESTER_SUBDIR: "${RAGINGESTER_SUBDIR:-ragingester}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${OPT_DIR:-/opt}/LightRAG:/opt/LightRAG
-      - ${OPT_DIR:-/opt}/RAGChecker:/opt/RAGChecker
-      - ${OPT_DIR:-/opt}/RAGIngester:/opt/RAGIngester
+      - ${OPT_DIR:-/opt}/${LIGHTRAG_SUBDIR:-lightrag}:/opt/${LIGHTRAG_SUBDIR:-lightrag}
+      - ${OPT_DIR:-/opt}/${RAGCHECKER_SUBDIR:-ragchecker}:/opt/${RAGCHECKER_SUBDIR:-ragchecker}
+      - ${OPT_DIR:-/opt}/${RAGINGESTER_SUBDIR:-ragingester}:/opt/${RAGINGESTER_SUBDIR:-ragingester}
     networks:
       - aibox_network
     restart: "no"
