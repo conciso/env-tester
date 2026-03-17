@@ -1,9 +1,0 @@
-presets:
-  - label: "baseline-ingestion"
-    env:
-      CHUNK_SIZE: "800"
-      CHUNK_OVERLAP_SIZE: "150"
-      MAX_GLEANING: "0"
-      MAX_ENTITY_TOKENS: "8192"
-      MAX_RELATION_TOKENS: "8192"
-      FORCE_LLM_SUMMARY_ON_MERGE: "4"
