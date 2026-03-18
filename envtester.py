@@ -46,6 +46,10 @@ LIGHTRAG_DIR    = OPT_DIR / LIGHTRAG_SUBDIR
 RAGCHECKER_DIR  = OPT_DIR / RAGCHECKER_SUBDIR
 RAGINGESTER_DIR = OPT_DIR / RAGINGESTER_SUBDIR
 
+BASE_ENV        = LIGHTRAG_DIR / ".env"
+BASE_ENV_BACKUP = LIGHTRAG_DIR / ".env.bak"
+OVERRIDE_ENV    = LIGHTRAG_DIR / "override.env"
+
 LIGHTRAG_HOST       = "lightrag"
 LIGHTRAG_PORT       = 9621
 EMBEDDING_HOST      = "ollama"
@@ -292,7 +296,7 @@ def main():
     with open(PRESETS_FILE) as f:
         config = yaml.safe_load(f)
 
-    presets   = config.get("presets", [])
+    presets   = config if isinstance(config, list) else config.get("presets", [])
     run_group = datetime.now().strftime("%Y%m%d_%H%M%S") + "_run"
 
     log(f"Modus: {RUNNER_MODE.upper()} | {len(presets)} Preset(s) | Run-Gruppe: {run_group}")
